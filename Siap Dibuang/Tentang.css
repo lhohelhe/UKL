@@ -1,0 +1,96 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Open Sans', arial, sans-serif;
+    box-sizing: border-box;
+    max-width: 100vw;
+    scroll-behavior: smooth;
+}
+body {
+    background-color: #000000;
+}
+
+nav ul  {
+    display: flex;
+    gap: 15px;
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+    margin: 0px;
+    position: relative;
+    width: 100%;
+}
+.logo {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 35px;
+    margin-left: 20px;
+}
+nav li {
+    list-style: none;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+nav a {
+    color: rgb(252, 252, 252);
+    text-decoration: none;
+    padding: 5px ;
+    position: relative;
+}
+nav a:after {
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    height: 2px;
+    width: 0;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+  }
+nav a:hover:after {
+    width: 100%;
+}
+
+
+/* WRAP BUAT Tentangmain */
+.Tentangmain {
+    position: relative;
+    width: 90%;
+    color: #ffffff;
+    background-color: #000000;
+    margin: auto;
+}
+.Tentangmain h2 {
+    margin: 30px 10px;
+}
+.Tentangmain p {
+    justify-content: center;
+    margin: 25px auto;
+}
+.Tentangmain .a {
+    display: flex;
+    margin: 30px auto;
+    gap: 10%;
+}
+.Tentangmain .visi {
+    width: 40%;
+}
+.Tentangmain .misi {
+    width: 40%;
+}
+/* ---------------- */
+
+footer{
+    background-color: #000000;
+    position: relative;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    justify-content: center;
+    display: flex;
+}
+footer .sosmed ul {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+    filter: brightness(0) invert(1);
+    position: relative;
+}

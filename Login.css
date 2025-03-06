@@ -1,0 +1,83 @@
+body{
+    background: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0)),
+                    url('Foto/bglogin.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 95vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Open Sans', arial, sans-serif;
+}
+
+.logo {
+    max-width: 100px;
+    max-height: 100px;
+    position: absolute;
+    left: 89%;
+    top: 4%;
+}
+
+h2 {
+    z-index: 2;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 15%;
+    left: 65%;
+    font-size: 3em;
+}
+
+.login {
+    position: absolute;
+    right: 20%;
+    top: 42%;
+    color: white;
+}
+
+.login p{
+    margin: 0%;
+    font-size: small;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.inputnya {
+    width: 185px;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    color: black;
+    display: block;
+}
+
+tr:nth-child(3){
+    height: 20px;   
+}
+
+.ganti {
+    background: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.ganti:hover {
+    text-decoration: underline;
+}
+
+.tombol {
+    display: flex;
+}
+
+
+
