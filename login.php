@@ -1,8 +1,5 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "ukl";
+include 'connfront.php';
 
 // RUCIKA
 $conn = new mysqli($host, $user, $pass, $dbname);
@@ -35,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($name === "Admin" && $email === "Admin@gmail.com") {
             $_SESSION['Nama'] = $name;
-            header("Location: Admin/admin.php");
+            header("Location: Admin/user.php");
             exit();
 
         } else {
@@ -46,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // cari data nya
             session_start();
             $_SESSION['Nama'] = $name;
-            header("Location: Landing UKL.html");
+            header("Location: frontend/$beranda ");
             exit();
         } else {
             echo "<script>alert('User tidak ditemukan!');</script>";

@@ -1,21 +1,45 @@
 <?php
-include 'koneksi.php'; // Sambung ke database
+include 'koneksiadmin.php';
 
-$query = "SELECT * FROM pengguna"; // Ambil data pengguna
-$result = mysqli_query($conn, $query); 
+// BAGIAN USER
+// sekat -- jumlah user yang akan di tampilkan
+$userperhalaman = 6; 
 
-// Handle delete request
-if (isset($_POST['ID'])) {
-    $ID = $_POST['ID'];
-    $deleteQuery = "DELETE FROM pengguna WHERE ID = $ID";
+// belum paham maksudnya --
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $userperhalaman;
 
-    if (mysqli_query($conn, $deleteQuery)) {
-        header("Location: admin.php"); // Redirect back after deletion
+// ini juga belum paham --
+$hitungtotaluser = "SELECT COUNT(*) AS total FROM pengguna";
+$hasilperhitunganuser = mysqli_query($conn, $hitungtotaluser);
+$totalbarisuser = mysqli_fetch_assoc($hasilperhitunganuser);
+$totalpengguna = $totalbarisuser['total'];
+
+// menampilkan data user sesuai dengan maksimal data yang dapat ditampilkan
+$selectuser = "SELECT * FROM pengguna LIMIT $userperhalaman OFFSET $offset";
+$pengguna = mysqli_query($conn, $selectuser); 
+$totalhalaman = ceil($totalpengguna / $userperhalaman);
+
+
+
+// =-=-=-= INI BUAT HAPUS DATA (SEMUA TERCANTUM) =-=--= //
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['hapus_pengguna'])) {
+        $id = $_POST['hapus_pengguna'];
+        mysqli_query($conn, "DELETE FROM pengguna WHERE ID = $id");
+        header("Location: admin.php");
         exit();
-    } else {
-        echo "Error deleting record: " . mysqli_error($conn);
+    }
+
+    if (isset($_POST['hapus_pelatihan'])) {
+        $id = $_POST['hapus_pelatihan'];
+        mysqli_query($conn, "DELETE FROM pelatihan WHERE ID = $id");
+        header("Location: admin.php");
+        exit();
     }
 }
+// =-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= //
+
 ?>
 
 <!DOCTYPE html>
@@ -28,86 +52,87 @@ if (isset($_POST['ID'])) {
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
 
-    <style>
-        .card {
-    padding: 10px;
-}
 
-.card table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.card table td {
-    padding: 5px;
-    vertical-align: top;
-}
-
-.actions {
-    display: flex;
-    justify-content: start;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.btn-edit {
-    text-decoration: none;
-    color: blue;
-}
-
-.btn-delete {
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.btn-delete i {
-    color: red;
-}
-ul li a{
-    text-decoration: none;
-    color:rgb(255, 255, 255);
-}
-    </style>
-
-<div class="wrapper">
-    <div class="sidebar">
-        <h2>Cari User</h2>
+<!-- Sampingan -->
+    <div class="samping">
+        <h2>Sidebar</h2>
         <ul>
-            
+            <li><a href="user.php?type=tambah">Tambah User</a></li>
+            <li><a href="pelatihan.php">Tambah Pelatihan</a></li>
+            <li><a href="informasi.php">Tambah Informasi</a></li>
             <li><a href="../login.php?type=login" class="Kembali">Kembali</a></li>
         </ul>
     </div>
-    <div class="container">
+<!-- =-=-=-=-= -->
 
-    <!-- INI BUAT NAMPILIN SEMUA USER -->
-    <?php
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='card'>";
+<div class="allexptsidebar">
+<!-- INI BUAT NAMPILIN PELATIHAN -->
+<div class="pelatihan">
+    <h2>Daftar Pelatihan</h2>
 
-        echo "<table>"; //Tabel nya
-        echo "<tr><td><strong>Nama</strong></td><td>: " . htmlspecialchars($row['Nama']) . "</td></tr>";
-        echo "<tr><td><strong>Email</strong></td><td>: " . htmlspecialchars($row['Email']) . "</td></tr>";
-        echo "<tr><td><strong>Usia</strong></td><td>: " . htmlspecialchars($row['Usia']) . "</td></tr>";
-        echo "</table>";  //Penutup Tabel nya
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Program</th>
+            <th>Harga</th>
+            <th>Deskripsi</th>
+            <th>Gambar</th>
+            <th>=-=-=-=</th>
+        </tr>
+            <?php $pelatihan = $conn->query("SELECT * FROM pelatihan");
+            while ($rowpelatihan = $pelatihan->fetch_assoc()): 
+            $idpelatihan= htmlspecialchars($rowpelatihan['ID']); ?>
+        <tr>
 
-        echo "<div class='actions'>";
-        echo "<a href='edit.php?ID=" . $row['ID'] . "' class='btn-edit'><i class='fa-solid fa-pen-to-square'></i></a>"; // Tombol Edit
-        echo "<form action='' method='POST' style='display:inline;'>";
-        echo "<input type='hidden' name='ID' value='" . $row['ID'] . "'>";
-        echo "<button type='submit' class='btn-delete' onclick='return confirm(\"Apakah Anda yakin ingin menghapus?\");'>";       echo "<i class='fa-solid fa-trash'></i>"; // Tombol Hapus
+            <td><?= $idpelatihan ?></td>
+            <td><?= htmlspecialchars($rowpelatihan['program']) ?></td>
+            <td><?= htmlspecialchars($rowpelatihan['harga']) ?></td>
+            <td><?= htmlspecialchars($rowpelatihan['deskripsi']) ?></td>
+            <td><img src="../<?= htmlspecialchars($rowpelatihan['gambar']) ?>" alt="Gambar Pelatihan"></td>
+            <td><form method="POST" style="display:inline;">
+            
+        <div class="actions">
+            <a href="pelatihan.php?type=edit&ID=<?= $idpelatihan ?>" class="btn-edit">
+            <i class="fa-solid fa-pen-to-square"></i> </a>
+            <input type="hidden" name="hapus_pelatihan" value="<?= $idpelatihan ?>">
+            <button type="submit" class="btn-delete" onclick="return confirm('Yakin hapus pelatihan ini?');">
+            <i class="fa-solid fa-trash"></i>
+            </button> </form> </td>
+        </div> </tr>
 
-        echo "</form>" ."</div>" ."</div>";
-    }
-} else {
-    echo "<p>Tidak ada data pengguna.</p>";
-}
-?>
+        <?php endwhile; ?> </table>
 
+</div>
+
+<!-- INI BUAT NAMPILIN INFORMASI -->
+<div class="informasi">
+    <?php $informasi = $conn->query("SELECT * FROM informasi ORDER BY waktu DESC"); ?>
+
+    <h2>Daftar Informasi</h2>
+
+    <div class="persatuancardinfo">
+        <?php while ($row = $informasi->fetch_assoc()) { ?>
+        <div class="cardinfo">
+            <img src="../<?php echo $row['gambar']; ?>" alt="gambar">
+
+        <div class="info-content">
+            <h3><?php echo $row['judul']; ?></h3>
+            <p><b>Tanggal:</b> <?php echo $row['waktu']; ?></p>
+
+            <div class="actions">
+                <a href="informasi.php?type=edit&ID=<?php echo $row['ID']; ?>" class="btn-edit">
+                <i class="fa-solid fa-pen-to-square"></i> </a>
+                <form method="POST" style="display:inline;">
+                <input type="hidden" name="hapus_informasi" value="<?php echo $row['ID']; ?>">
+                <button type="submit" class="btn-delete" onclick="return confirm('Yakin hapus pengguna ini?');">
+                <i class="fa-solid fa-trash"></i> </button> </form>
+            </div> 
+
+        </div> </div> <!-- tutup info-content & cardinfo --> <?php } ?>
     </div>
 </div>
+
+</div> <!-- allexptsidebar -->
 </body>
 </html>

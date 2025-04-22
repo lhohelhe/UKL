@@ -9,7 +9,6 @@ body{
         align-items: center;
         font-family: 'Open Sans', arial, sans-serif;
 }
-
 .logo {
     max-width: 100px;
     max-height: 100px;
@@ -17,7 +16,6 @@ body{
     left: 89%;
     top: 4%;
 }
-
 h2 {
     z-index: 2;
     color: rgb(255, 255, 255);
@@ -26,29 +24,24 @@ h2 {
     left: 65%;
     font-size: 3em;
 }
-
 .login {
     position: absolute;
     right: 20%;
     top: 42%;
     color: white;
 }
-
 .login p{
     margin: 0%;
     font-size: small;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
 }
-
 th {
     text-align: left;
     padding-bottom: 10px;
 }
-
 .inputnya {
     width: 185px;
     padding: 8px;
@@ -58,11 +51,9 @@ th {
     color: black;
     display: block;
 }
-
 tr:nth-child(3){
     height: 20px;   
 }
-
 .ganti {
     background: none;
     border: none;
@@ -70,11 +61,9 @@ tr:nth-child(3){
     font-size: 16px;
     cursor: pointer;
 }
-
 .ganti:hover {
     text-decoration: underline;
 }
-
 .tombol {
     display: flex;
 }
