@@ -55,14 +55,19 @@ if (isset($_POST['submit'])) {
     }
 
     if (mysqli_query($conn, $sql)) {
-        header("Location: admin.php");
+        header("Location: $varinf");
         exit;
     } else {
         echo "Error: " . mysqli_error($conn);
     }
 }
 
-mysqli_close($conn);
+if (isset($_POST['hapus_informasi'])) {
+    $id = $_POST['hapus_informasi'];
+    mysqli_query($conn, "DELETE FROM pengguna WHERE ID = $id");
+    header("Location: $varinf");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,10 +77,48 @@ mysqli_close($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UKL</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
-<body class="informasiaksi">
+<body>
+<div class="samping">
+        <h2>Sidebar</h2>
+        <ul>
+            <li><a href="<?=$varuse?>?type=tambah">Pengguna</a></li>
+            <li><a href="<?=$varpel?>">Pelatihan</a></li>
+            <li><a href="<?=$varinf?>">Informasi</a></li>
+            <li><a href="../login.php?type=login" class="Kembali">Kembali</a></li>
+        </ul>
+    </div>
 
+<div class="info">
+<div class="informasi">
+    <?php $informasi = $conn->query("SELECT * FROM informasi ORDER BY waktu DESC"); ?>
+
+    <h2>Daftar Informasi</h2>
+
+    <div class="persatuancardinfo">
+        <?php while ($row = $informasi->fetch_assoc()) { ?>
+        <div class="cardinfo">
+            <img src="../<?php echo $row['gambar']; ?>" alt="gambar">
+
+        <div class="info-content">
+            <h3><?php echo $row['judul']; ?></h3>
+            <p><b>Tanggal:</b> <?php echo $row['waktu']; ?></p>
+
+            <div class="actions">
+                <a href="informasi.php?type=edit&ID=<?php echo $row['ID']; ?>" class="btn-edit">
+                <i class="fa-solid fa-pen-to-square"></i> </a>
+                <form method="POST" style="display:inline;">
+                <input type="hidden" name="hapus_informasi" value="<?php echo $row['ID']; ?>">
+                <button type="submit" class="btn-delete" onclick="return confirm('Yakin hapus pengguna ini?');">
+                <i class="fa-solid fa-trash"></i> </button> </form>
+            </div> 
+
+        </div> </div> <!-- tutup info-content & cardinfo --> <?php } ?>
+    </div>
+</div>    
+<div class="informasiaksi">
 <div class="cardinformasi">
 <form method="POST" enctype="multipart/form-data">
     <label>Judul:</label>
@@ -94,9 +137,8 @@ mysqli_close($conn);
     <?php endif; ?>
 
     <button type="submit" name="submit"><?= $type === 'edit' ? 'Update' : 'Simpan' ?> Informasi</button>
-</form>
-    <a href="admin.php">Batal</a>
-
+</form> </div>
+</div>
 </div>
 </body>
     

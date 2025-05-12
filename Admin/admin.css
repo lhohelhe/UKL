@@ -9,8 +9,10 @@
     right: 0px;
     position: absolute;
 }
-/* ADMIN PHP */
-
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
 /* -- Sampingan -- */
 .samping {
     position: fixed;
@@ -55,97 +57,9 @@
 .actions .btn-delete i {
     color: red;
 }
-/* -- Segmen pelatihan -- */
-.pelatihan {
-    margin: 20px 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-}
-.pelatihan table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-.pelatihan th, .pelatihan td {
-    border: 1px solid #aaa;
-    padding: 10px;
-    text-align: left;
-}
-.pelatihan th {
-    background-color: #eee;
-}
-.pelatihan img {
-    max-width: 100px;
-    height: auto;
-}
-.pelatihan a {
-    display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-decoration: none;
-    color: #007BFF;
-}
-.pelatihan a:hover {
-    text-decoration: underline;
-}
+
 /* -- Segmen informasi -- */
-.informasi {
-    margin: 20px 10px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-.persatuancardinfo {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-.cardinfo{
-    width: 250px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-}
-.cardinfo:hover {
-    transform: scale(1.02);
-}
-.cardinfo img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-.info-content {
-    padding: 15px;
-}
-.info-content h3 {
-    font-size: 16px;
-    margin: 0 0 10px;
-}
-.action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-.action-buttons a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #333;
-}
-.action-buttons a:hover {
-    color: crimson;
-}
+
 
 
 /* EDIT USER PHP */
@@ -271,22 +185,55 @@ h2 {
 /* EDIT PELATIHAN PHP */
 
 /* -- */
+
 .pelatihanaksi {
-    /* background-color: #f2f2f2;
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; */
+    max-width: 1020px;
+    right: 0px;
+    position: absolute;
+}
+.pelatihanaksi .pelatihan {
+    margin: 20px 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+.pelatihanaksi .pelatihan table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.pelatihanaksi .pelatihan th, .pelatihan td {
+    border: 1px solid #aaa;
+    padding: 10px;
+    text-align: left;
+}
+.pelatihanaksi.pelatihan th {
+    background-color: #eee;
+}
+.pelatihanaksi .pelatihan img {
+    max-width: 100px;
+    height: auto;
+}
+.pelatihanaksi .pelatihan a {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #007BFF;
+}
+.pelatihanaksi .pelatihan a:hover {
+    text-decoration: underline;
 }
 .pelatihanaksi .cardpelatihan {
     background: white;
     padding: 30px 40px;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    width: 100%;
     max-width: 400px;
     text-align: center;
+
 }
 .pelatihanaksi .cardpelatihan h2 {
     margin-bottom: 20px;
@@ -352,13 +299,49 @@ h2 {
 /* EDIT INFORMASI PHP */
 
 /* -- */
-.informasiaksi {
-    background-color: #f2f2f2;
-    font-family: sans-serif;
-    display: flex;
+.info {
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    max-width: 1020px;
+    right: 0px;
+    position: absolute;  
+}
+.info .informasi {
+    margin: 20px 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+.info .persatuancardinfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.info .cardinfo{
+    width: 250px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.info .cardinfo:hover {
+    transform: scale(1.02);
+}
+.info .cardinfo img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.info .info-content {
+    padding: 15px;
+}
+.info .info-content h3 {
+    font-size: 16px;
+    margin: 0 0 10px;
 }
 .informasiaksi .cardinformasi {
     background: white;

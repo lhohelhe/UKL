@@ -56,10 +56,17 @@ if (isset($_POST['submit'])) {
     }
 
     if ($conn->query($sqlpelatihan) === TRUE) {
-        header("Location: admin.php");
+        header("Location: $varpel");
     } else {
         echo "Error: " . $sqlpelatihan . "<br>" . $conn->error;
     }
+}
+
+if (isset($_POST['hapus_pelatihan'])) {
+    $id = $_POST['hapus_pelatihan'];
+    mysqli_query($conn, "DELETE FROM pengguna WHERE ID = $id");
+    header("Location: $varpel");
+    exit();
 }
 ?>
 
@@ -69,15 +76,16 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title><?= $editMode ? "Edit" : "Tambah" ?> Data Pelatihan</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
 <div class="samping">
         <h2>Sidebar</h2>
         <ul>
-            <li><a href="user.php?type=tambah">Tambah User</a></li>
-            <li><a href="pelatihan.php">Tambah Pelatihan</a></li>
-            <li><a href="informasi.php">Tambah Informasi</a></li>
+            <li><a href="<?=$varuse?>?type=tambah">Pengguna</a></li>
+            <li><a href="<?=$varpel?>">Pelatihan</a></li>
+            <li><a href="<?=$varinf?>">Informasi</a></li>
             <li><a href="../login.php?type=login" class="Kembali">Kembali</a></li>
         </ul>
     </div>
@@ -140,7 +148,6 @@ if (isset($_POST['submit'])) {
 
             <button type="submit" name="submit"><?= $editMode ? "Update" : "Upload" ?></button>
         </form>
-            <a href="admin.php" class="cancel-btn">Batal</a>
     </div>
 </div>
 </body>

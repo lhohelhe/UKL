@@ -11,4 +11,7 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
+$varuse="pengguna.php";
+$varpel="pelatihan.php";
+$varinf="informasi.php";
 ?>

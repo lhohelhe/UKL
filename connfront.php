@@ -12,6 +12,6 @@ if ($conn->connect_error) {
 }
 
 $beranda='Landing.php';
-$program='Program UKL.php';
+$program='ProgramUKL.php';
 $tentang='Tentang.php';
 ?>
