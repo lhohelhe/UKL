@@ -22,6 +22,7 @@ nav ul  {
     position: fixed;
     width: 100%;
     z-index: 3;
+    padding-right: 30px;
 }
 .logo {
     max-width: 100px;
@@ -37,7 +38,7 @@ nav li {
 nav a {
     color: rgb(252, 252, 252);
     text-decoration: none;
-    padding: 5px ;
+    padding: 5px;
     position: relative;
 }
 nav a:after {
@@ -49,9 +50,12 @@ nav a:after {
     left: 0;
     bottom: -5px;
     transition: 0.3s;
-  }
+}
 nav a:hover:after {
     width: 100%;
+}
+li.profile-icon {
+    margin-left: auto;
 }
 /* ---------------- */
 
@@ -85,6 +89,7 @@ nav a:hover:after {
     color: #ffffff;
     text-decoration: none;
     display: block;
+    padding: 12px 0;
 }
 .Landingheader .kontener .selimut .moto h1 {
     font-size: 4em;
@@ -96,7 +101,6 @@ nav a:hover:after {
 }
 .Landingheader .kontener .selimut .moto button {
     width: 185px;
-    padding: 12px 0;
     text-align: center;
     border-radius: 25px;
     margin: 60px 0px 0px 20px;
@@ -111,6 +115,9 @@ nav a:hover:after {
     background: #ffffff;
 }
 .Landingheader .kontener .selimut .moto button:hover a {
+    color: black;
+}
+.Landingheader .kontener .selimut .moto a button:hover {
     color: black;
 }
 
@@ -217,12 +224,14 @@ nav a:hover:after {
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin: 20px auto auto auto ;
+    margin: 0 35px;
     position: relative;
+    flex-wrap: wrap;
+    max-width: calc(100vw - 250px);
 }
 .Landingmain .bungkus .kontener .kartu {
-    flex: 1;
-    max-width: calc((90% / 5) - 20px);
+    flex: 0 0 180px;
+    max-width: 180px;
     height: 350px;
     background-color: rgba(43, 43, 43, 0.868);
     border: 1px solid rgba(43, 43, 43, 0.868);
@@ -233,17 +242,22 @@ nav a:hover:after {
     flex-direction: column;
     text-align: left;
     transition: transform 0.3s ease;
+    position: relative;
+    margin: auto 0;
 }
 .Landingmain .bungkus .kontener .kartu:hover {
     transform: translateY(-5px);
 }
 .Landingmain .bungkus .kontener .kartu img {
     width: 100%;
-    height: 70%;
+    height: 175px;
     object-fit: cover;
+    position: relative;
 }
 .Landingmain .bungkus .kontener .kartu .info {
     padding: 15px;
+    height: 175px;
+    position: relative;
 }
 .Landingmain .bungkus .kontener .info .judul {
     font-size: 1.2rem;
@@ -300,7 +314,6 @@ nav a:hover:after {
 }
 .Landingfigure .gambar {
     color: #ffffff;
-    background-image: url(../Foto/promo.jpg);
     background-size: cover;
     width: 80%;
     background-blend-mode: darken;
@@ -364,7 +377,6 @@ nav a:hover:after {
 }
 .Programfigure .gambar {
     color: #ffffff;
-    background-image: url(../Foto/promo.jpg);
     background-size: cover;
     width: 80%;
     background-blend-mode: darken;
@@ -381,6 +393,10 @@ nav a:hover:after {
     background-color: #00000075;
     border-radius: 10px;
     text-align: center;
+}
+.Programfigure .gambar .promo h3 {
+    font-weight: bold;
+    color: #e0d6aa;   
 }
 /* ---------------- */
 
@@ -408,7 +424,7 @@ nav a:hover:after {
     margin: 0 35px;
     position: relative;
     flex-wrap: wrap;
-    max-width: calc(100vw - 70px);
+    max-width: calc(100vw - 250px);
 }
 .Programsection .kontener .kartu {
     flex: 0 0 180px;
@@ -534,6 +550,33 @@ nav a:hover:after {
     background-color: white;
     color: black;
 }
+/* paginationnya ini ya */
+.Programartikel .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.Programartikel .pagination a {
+    padding: 8px 14px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.Programartikel .pagination a:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+.Programartikel .pagination a[style*="font-weight: bold"] {
+    background-color: #007BFF;
+    color: white;
+    border-color: #007BFF;
+}
 /* WRAP BUAT INFORMASINYA */
 .informasi-page {
     background-color: #000;
@@ -587,107 +630,91 @@ nav a:hover:after {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    max-width: 100vw;
-    max-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-    gap: 20px;
+    padding: 40px;
+    gap: 30px;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
-
 .wrapformdaftar,
 .tampilandaftar {
     background-color: #1a1a1a;
     padding: 25px 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
     flex: 1 1 400px;
-    width: 450px;
+    max-width: 500px;
 }
-
 .wrapformdaftar h2,
 .tampilandaftar h1 {
     margin-top: 0;
-    margin-bottom: 15px;
-    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
 }
-
 .wrapformdaftar form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
 .wrapformdaftar label {
     font-weight: 600;
-    margin-bottom: 6px;
-    display: block;
+    margin-bottom: 5px;
 }
-
-.wrapformdaftar input[type="file"] {
+.wrapformdaftar select,
+.wrapformdaftar input[type="text"] {
     padding: 10px;
-    border: 1px solid #555;
+    border: 1px solid #444;
     border-radius: 6px;
-    background-color: #222;
-    color: #eee;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
+    background-color: #2a2a2a;
+    color: #fff;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
 }
-
-.wrapformdaftar input[type="file"]:hover {
-    border-color: #0d6efd;
-}
-
 .wrapformdaftar button {
     background-color: #0d6efd;
     color: #fff;
     border: none;
-    padding: 14px;
+    padding: 12px;
     border-radius: 8px;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 .wrapformdaftar button:hover {
     background-color: #0b5ed7;
 }
-
-.tampilandaftar img{
-    width: 450px;
+.tampilandaftar img {
+    width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 10px;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
-
-.tampilandaftar .deskripsi,
-.tampilandaftar {
+.tampilandaftar .deskripsi {
     margin-bottom: 15px;
-    line-height: 1.5;
+    line-height: 1.6;
+    font-size: 0.95em;
 }
-
 .tampilandaftar .harga {
     font-size: 1rem;
     font-weight: bold;
     color: #e0d6aa;
+    display: block;
+    margin-bottom: 15px;
 }
-
 .btn-kembali {
     display: inline-block;
-    padding: 10px 15px;
     text-decoration: none;
     color: #0d6efd;
     font-weight: 600;
-    border: 2px solid transparent;
-    border-radius: 6px;
-    transition: color 0.3s ease, border-color 0.3s ease;
+    font-size: 0.95em;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
 }
-
 .btn-kembali:hover {
-    color: #0b5ed7;
-    border-color: #0b5ed7;
+    border-color: #0d6efd;
 }
 
 /* -----------------------*/
@@ -723,6 +750,73 @@ nav a:hover:after {
     width: 40%;
 }
 /* ---------------- */
+
+/* WRAP Buat URPROFIL */
+/* Sidebar UrProfil */
+.urprofil {
+      display:flex;
+      margin-top:80px;
+    }
+.urprofil .sidebar {
+  width: 250px;
+  background-image: url(../Foto/bglogin.jpg);
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-blend-mode: darken;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+}
+.urprofil .sidebar .profile {
+      padding: 20px;
+    }
+.urprofil .sidebar .profile h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+.urprofil .sidebar .profile p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+/* Main UrProfil */
+.urprofil .urmain {
+      flex: 1;
+      background: #f4f6f8;
+      width: calc(100vw - 250px);
+      margin-left: 250px;
+      min-height: 100vh;
+    }
+.urprofil .urmain .card {
+      background: rgb(255, 255, 255);
+      border-radius: 10px;
+      box-shadow: 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      margin: 20px 15px;
+      overflow: hidden;
+      max-width: calc(100% - 35px);
+    }
+.urprofil .urmain .card img {
+    object-fit: cover;
+    width: 150px;
+    height: auto;
+}
+.urprofil .urmain .card-content {
+      flex: 1;
+      padding: 20px;
+      width: 80%;
+    }
+.urprofil .urmain .card-content h3 {
+      margin-bottom: 10px;
+    }
+.urprofil .urmain .card-content p {
+      font-size: 14px;
+      color: #555;
+      margin: 5px 0;
+    }
+/* =-=-=-=-=-=-=-=-= */
 
 /* WRAP BUAT FOOTER*/
 footer{

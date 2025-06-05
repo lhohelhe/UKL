@@ -9,17 +9,21 @@ include '../connfront.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UKL</title>
     <link rel="stylesheet" href="frontend.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Sekat -->
     <nav>
-        <ul>
-            <img src="../Foto/Logo Tempa.jpg" class="logo">
-            <li><a href="<?=$beranda?>">Beranda</a></li>
-            <li><a href="<?=$program?>">Layanan</a></li>
-            <li><a href="#main">Tentang</a></li>
-            <li><a href="<?=$program?>#Promo">Promo</a></li>
-        </ul>
+      <ul>
+        <img src="../Foto/Logo Tempa.jpg" class="logo">
+        <li><a href="<?=$beranda?>">Beranda</a></li>
+        <li><a href="<?=$program?>">Layanan</a></li>
+        <li><a href="<?=$tentang?>">Tentang</a></li>
+        <li><a href="#Promo">Promo</a></li>
+        <li class="profile-icon">
+          <a href="profil.php" title="Profil Saya">
+          <i class="fa-solid fa-user" style="font-size: 20px;"></i> </a> </li>
+      </ul>
     </nav>
     <!-- Sekat -->
     <main id="main" class="Tentangmain">

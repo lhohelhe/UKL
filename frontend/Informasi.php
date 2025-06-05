@@ -4,8 +4,8 @@ include '../connfront.php';
 $id = $_GET['ID'] ?? '';
 
 if ($id) {
-    $query = "SELECT * FROM informasi WHERE ID = $id";
-    $result = mysqli_query($conn, $query);
+    $perintahnya = "SELECT * FROM informasi WHERE ID = $id";
+    $result = mysqli_query($conn, $perintahnya);
     $data = mysqli_fetch_assoc($result);
 } else {
     echo "ID tidak valid.";
@@ -28,7 +28,7 @@ if ($id) {
     <h1><?= htmlspecialchars($data['judul']) ?></h1>
     <div class="isi"><?= nl2br(htmlspecialchars($data['isi'])) ?></div>
     <div class="tanggal">Dibuat pada: <?= date('d M Y', strtotime($data['waktu'])) ?></div>
-    <a href="Program UKL.php" class="btn-kembali">← Kembali</a>
+    <a href="<?=$program?>" class="btn-kembali">← Kembali</a>
 </div>
 
 <footer>

@@ -1,11 +1,8 @@
 <?php
 include 'connfront.php';
+include 'Admin/koneksiadmin.php';
 
-// RUCIKA
-$conn = new mysqli($host, $user, $pass, $dbname);
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
-}
+
 
 // Prosesi Masuk Nggaknya
 $type = isset($_GET['type']) ? $_GET['type'] : 'Tambah';
@@ -14,38 +11,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['Email'];
     
     if ($type == 'Tambah') {
-        // Proses daftar
-        $sql = "INSERT INTO pengguna (Nama, Email) VALUES ('$name', '$email')";
-        if ($conn->query($sql) === TRUE) {
-            // Ambil ID pengguna yang baru saja ditambahkan
-            $userId = $conn->insert_id; // Mendapatkan ID pengguna yang baru ditambahkan
-            echo "Data berhasil ditambahkan!";
-            // Simpan ID dalam session
-            session_start();
-            $_SESSION['User ID'] = $userId; // Simpan ID pengguna dalam session
-            header("Location: login.php?type=login");
-            exit();
-        } else {
-            echo "Error: " . $conn->error;
-        }
+    // Proses daftar
+    $sql = "INSERT INTO pengguna (Nama, Email) VALUES ('$name', '$email')";
+    if ($conn->query($sql) === TRUE) {
+        header("Location: login.php?type=login");
     } else {
-        // Proses login
+        echo "Error: " . $conn->error;
+    }
+} else {
+    // LOGIN
+    if ($name === 'Admin' && $email === 'Admin@gmail.com') {
+        header("Location: Admin/$varuse?type=tambah");
+        exit();
+    } else {
         $sql = "SELECT * FROM pengguna WHERE Nama='$name' AND Email='$email'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Ambil data pengguna
             $user = $result->fetch_assoc();
             session_start();
-            $_SESSION['Nama'] = $user['Nama'];
-            $_SESSION['PenggunaID'] = $user['ID']; // Simpan ID pengguna dalam session
-            
+            $_SESSION['Namapengguna'] = $user['Nama'];
+            $_SESSION['PenggunaID'] = $user['ID'];
             header("Location: frontend/$beranda");
             exit();
         } else {
-            echo "<script>alert('User  tidak ditemukan!');</script>";
-        }
+            echo "<script>alert('User tidak ditemukan!');</script>";
+      }
     }
+  }
 }
 ?>
 

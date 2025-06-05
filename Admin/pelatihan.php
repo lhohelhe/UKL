@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
 
 if (isset($_POST['hapus_pelatihan'])) {
     $id = $_POST['hapus_pelatihan'];
-    mysqli_query($conn, "DELETE FROM pengguna WHERE ID = $id");
+    mysqli_query($conn, "DELETE FROM pelatihan WHERE ID = $id");
     header("Location: $varpel");
     exit();
 }
@@ -86,6 +86,8 @@ if (isset($_POST['hapus_pelatihan'])) {
             <li><a href="<?=$varuse?>?type=tambah">Pengguna</a></li>
             <li><a href="<?=$varpel?>">Pelatihan</a></li>
             <li><a href="<?=$varinf?>">Informasi</a></li>
+            <li><a href="<?=$varpnd?>">Pendaftaran</a></li>
+            <li><a href="<?=$varprm?>">Promo</a></li>
             <li><a href="../login.php?type=login" class="Kembali">Kembali</a></li>
         </ul>
     </div>

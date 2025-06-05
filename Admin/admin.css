@@ -187,7 +187,7 @@ h2 {
 /* -- */
 
 .pelatihanaksi {
-    max-width: 1020px;
+    max-width: 1010px;
     right: 0px;
     position: absolute;
 }
@@ -228,7 +228,7 @@ h2 {
 }
 .pelatihanaksi .cardpelatihan {
     background: white;
-    padding: 30px 40px;
+    padding: 30px 30px;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     max-width: 400px;
@@ -302,7 +302,7 @@ h2 {
 .info {
     justify-content: center;
     align-items: center;
-    max-width: 1020px;
+    max-width: 1010px;
     right: 0px;
     position: absolute;  
 }
@@ -403,4 +403,155 @@ h2 {
 }
 .informasiaksi a:hover{
     text-decoration: underline;
+}
+
+/* PENDAFTARAN */
+.pendaftaran {
+    width: 1000px;
+    right: 8px;
+    position: absolute;
+}
+.pendaftaran .pagination {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+}
+.pendaftaran .pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+}
+.pendaftaran .pagination a.active {
+    background-color: #3e3e3e;
+    color: white;
+}
+.pendaftaran .pagination a:hover {
+    background-color: #ddd;
+}
+.pnd {
+    margin: 20px 10px ;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: relative;
+}
+.pendaftaran .persatuancardpendaftaran {
+    margin: 20px auto ;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+}
+.pendaftaran .cardpendaftaran {
+    border: 1px solid #ccc;
+    padding: 20px 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+.pendaftaran .pendaftaran p {
+    margin-bottom: 5px;
+}
+.pendaftaran .pendaftaran table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.pendaftaran .pendaftaran table td {
+    padding: 5px;
+    vertical-align: top;
+}
+.pndaksi {
+    display: flex;
+    margin: 20px;
+    gap: 20px;
+}
+.pndaksi .cardpnd {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    justify-content: center;
+}
+.pndaksi h2 {
+    margin-bottom: 20px;
+    color: #000000;
+
+}
+.pndaksi .cardpnd label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #000000;
+}
+.pndaksi .cardpnd select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.pndaksi .cardpnd button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    background: black;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.pndaksi .cardpnd button:hover {
+    background: #333;
+}
+/* PROMO */
+.promo {
+    margin-top: 20px;
+    width: 1000px;
+    right: 8px;
+    position: absolute;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.promo form {
+    width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgb(241, 241, 241);
+    color: rgb(0, 0, 0);
+    padding: 20px;
+}
+.promo label {
+    display: block;
+    margin-top: 10px;
+}
+.promo input[type="number"],.promo input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.promo button {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    border: 1px solid black;
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 4px;
 }

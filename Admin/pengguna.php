@@ -86,6 +86,8 @@ if (isset($_POST['hapus_pengguna'])) {
             <li><a href="<?=$varuse?>?type=tambah">Pengguna</a></li>
             <li><a href="<?=$varpel?>">Pelatihan</a></li>
             <li><a href="<?=$varinf?>">Informasi</a></li>
+            <li><a href="<?=$varpnd?>">Pendaftaran</a></li>
+            <li><a href="<?=$varprm?>">Promo</a></li>
             <li><a href="../login.php?type=login" class="Kembali">Kembali</a></li>
         </ul>
     </div>

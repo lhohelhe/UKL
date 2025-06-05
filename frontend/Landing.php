@@ -1,29 +1,33 @@
 <?php
 include '../connfront.php';
+
+session_start();
+$isLoggedIn = isset($_SESSION['PenggunaID']);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
+    <!DOCTYPE html>
+    <html lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UKL</title>
-    <link rel="stylesheet" href="frontend.css">
     <head>
+        <link rel="stylesheet" href="frontend.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-      </head>
-      
-</head>
+    </head>
 <body>
 <!-- bismillah -->
     <nav>
-        <ul>
-            <img src="../Foto/Logo Tempa.jpg" class="logo">
-            <li><a href="#header">Beranda</a></li>
-            <li><a href="<?=$program?>">Layanan</a></li>
-            <li><a href="<?=$tentang?>">Tentang</a></li>
-            <li><a href="#Promo">Promo</a></li>
-        </ul>
+      <ul>
+        <img src="../Foto/Logo Tempa.jpg" class="logo">
+        <li><a href="#header">Beranda</a></li>
+        <li><a href="<?=$program?>">Layanan</a></li>
+        <li><a href="<?=$tentang?>">Tentang</a></li>
+        <li><a href="#Promo">Promo</a></li>
+        <li class="profile-icon">
+          <a href="profil.php" title="Profil Saya">
+          <i class="fa-solid fa-user" style="font-size: 20px;"></i> </a> </li>
+      </ul>
     </nav>
 <!-- pemisah aja -->
     <header class="Landingheader" id="header">
@@ -34,10 +38,10 @@ include '../connfront.php';
                     <h1>Tempa Dirimu</h1>
                     <h2>Asah Kemampuanmu</h2>
                     <button type="button"><a href="#main">Mulai</a></button>
-                    <button type="button"><a href="login.php">Login</a></button>
-                </div> 
+                    <button type="button"><a href="<?= $isLoggedIn ? '../autenti/logout.php' : '../login.php?type=login' ?>">
+                    <?= $isLoggedIn ? 'Keluar' : 'Masuk' ?></a></button> 
+                </div>
             </div>
-
         </div>
     </header>
 <!-- pemisah aja -->
@@ -67,35 +71,60 @@ include '../connfront.php';
                 <span>Pelayanan kami</span>
             </div>
         <div class="kontener">
-            <?php $pelatihan = $conn->query("SELECT * FROM pelatihan");
+            <?php $pelatihan = $conn->query("SELECT * FROM pelatihan ORDER BY id DESC LIMIT 5");
             while ($rowpelatihan = $pelatihan->fetch_assoc()): ?>
+            <a href="Pendaftaran.php?ID=<?= urlencode($rowpelatihan['ID']) ?>" class="daftar">
             <div class="kartu">
-                <img src="../<?= htmlspecialchars($rowpelatihan['gambar']) ?>" alt="Gambar Pelatihan">
+                <img src="../<?= htmlspecialchars($rowpelatihan['gambar']) ?>" alt="Gambar Pelatihan <?= htmlspecialchars($rowpelatihan['program']) ?>" />
                 <div class="info">
                     <h3 class="judul"><?= htmlspecialchars($rowpelatihan['program']) ?></h3>
-                    <p class="deskripsi"><?= htmlspecialchars($rowpelatihan['deskripsi']) ?></p>
-                    <strong class="harga">Rp <?= number_format($rowpelatihan['harga'], 0, ',', '.') ?></strong>
+                    <p class="deskripsi"><?= nl2br(htmlspecialchars($rowpelatihan['deskripsi'])) ?></p>
+                    <div class="bawahan">
+                        <strong class="harga">Rp <?= number_format($rowpelatihan['harga'], 0, ',', '.') ?></strong>
+                    </div>
                 </div>
             </div>
+        </a>
             <?php endwhile; ?>
         </div>
             <a href="<?=$program?>#pro"><i class="fa-solid fa-angle-right"></i></a>
         </div>
     </main>
 <!-- pemisah aja -->
+ <?php
+    $sql = " SELECT p.program, p.gambar, pr.diskon, pr.pelatihanID
+            FROM promo pr
+            JOIN pelatihan p ON pr.pelatihanID = p.ID
+            LIMIT 1 ";
+    $promomu = $conn->query($sql);
+
+if ($promomu && $promomu->num_rows > 0) {
+    $apalah = $promomu->fetch_assoc();
+    $pelatihanID = $apalah['pelatihanID'];
+    $program = $apalah['program'];
+    $diskon = $apalah['diskon'];
+    $gambar = $apalah['gambar'];
+} else {
+    $program = "Belum ada promo aktif";
+    $diskon = 0;
+    $gambar = "../Foto/promo.jpg";
+}
+?>
     <figure id="Promo" class="Landingfigure">
        <div class="luaran">
-           <span>Promo</span>
-           <div class="gambar">
-                <div class="promo">
-               <span>Khusus buat kamu</span>
-               <p>Promo pelatihan + visa berangkat ke SWISS <h3>Potongan 15%</h3></p>
-                </div>
-           </div>
-       </div>
+        <span>Promo</span>
+        <a href="pendaftaran.php?ID=<?php echo $pelatihanID; ?>&type=disc">
+          <div class="gambar" style="background-image: url('../<?php echo $gambar; ?>');">
+            <div class="promo">
+            <span>Khusus buat kamu</span>
+                <p>Promo pelatihan: <?php echo $program; ?> 
+                <h3>Potongan <?php echo $diskon; ?>%</h3></p>
+            </div>
+          </div> </a>
+    </div>
     </figure>
 <!-- pemisah aja -->
-    <footer>
+<footer>
     <div class="non">
     <div class="sosmed">
         <ul>
@@ -111,7 +140,7 @@ include '../connfront.php';
           <p>&copy; 2024 Tempa. Semua Hak Dilindungi.</p>
         </ul>
     </div>
-    </footer>
+</footer>
 <!-- pemisah aja -->
 </body>
 </html>
